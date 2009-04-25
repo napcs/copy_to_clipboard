@@ -3,13 +3,13 @@ Copyright (c) 2009 Brian P. Hogan
 
 == Overview
 
-Provides a button that can copy text to the user's clipboard. You specify the text that should be copied to the clipboard when calling the helper method. This solution uses Flash to provide a near cross-platform solution.
+This Rails plugin provides a button that can copy text to the user's clipboard. You specify the text that should be copied to the clipboard when calling the helper method. This solution uses Flash to provide a near cross-platform solution.
 
 == Usage
 
 First, install the plugin
 
-  script/plugin install git://github.com/napcs/clipboard.git
+  script/plugin install git@github.com:napcs/copy_to_clipboard.git
 
 Once installed, copy the SWF file to your <tt>public/swf</tt>.  You can do this easily with
 
