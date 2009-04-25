@@ -1,0 +1,5 @@
+1.0.0
+ * Initial release
+ * Ability to customize color, text, background, and size of button
+ * can specify the id of the object
+ * can specify the output id of an element

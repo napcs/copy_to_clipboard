@@ -1,0 +1,60 @@
+= Copy to Clipboard
+Copyright (c) 2009 Brian P. Hogan
+
+== Overview
+
+Provides a button that can copy text to the user's clipboard. You specify the text that should be copied to the clipboard when calling the helper method. This solution uses Flash to provide a near cross-platform solution.
+
+== Usage
+
+First, install the plugin
+
+  script/plugin install git://github.com/napcs/clipboard.git
+
+Once installed, copy the SWF file to your <tt>public/swf</tt>.  You can do this easily with
+
+  rake clipboard:install
+
+The helper will be mixed in with the rest of your plugins. You can use it in your application like this:
+
+  <%=copy_to_clipboard_tag "this goes on the clipboard!",
+           :update => "notice",
+           :update_message => "Copied something on the clipboard",
+           :text_string => "Copy",
+           :text_color => "000000",
+           :background_color => "FFFFFF",
+           :height => 18,
+           :width => 36
+  %>
+  
+This generates the embed tags and the javascript method to catch the return response from the movie.
+
+<script language="javascript">
+  function copy_button_DoFSCommand(m,a){
+    document.getElementById("notice").innerHTML=a;
+  }
+</script>
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="36" height="18" id="copy_button" align="middle">
+	<param name="allowScriptAccess" value="sameDomain" />
+	<param name="allowFullScreen" value="false" />
+	<param name="movie" value="/swf/copy_button.swf" />
+	<param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	
+	<param name=FlashVars VALUE="send_to_clipboard=this+goes+on+the+clipboard%21&text_color=000000&background_color=FFFFFF&text_string=Copy&update_text=Copied+something+on+the+clipboard">
+	<embed flashvars="send_to_clipboard=this+goes+on+the+clipboard%21&text_color=000000&background_color=FFFFFF&text_string=Copy&update_text=Copied+something+on+the+clipboard" src="/swf/copy_button.swf" quality="high" bgcolor="#ffffff" width="36" height=18 name="copy_button" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+</object>
+
+If you don't want to use the helper, you now have an idea of how this all works so you can enhance it to better suit your needs.
+
+=== Options
+* <tt>:update</tt> is the div to render the results
+* <tt>:update_message</tt> is the message the movie should place
+* <tt>:text_string</tt> is the text you want to display on the button
+* <tt>:text_color</tt> is the color of the button text. Default is FFFFFF
+* <tt>:background_color</tt> is the background color of the button. Default is 000000
+* <tt>:height</tt> is the height. It'll scale the movie. Default is 36
+* <tt>:width</tt> is the width. It'll scale the movie. Default is 72
+
+== Limitations
+
+* Flash 10 requires the button actively be pressed by the user. 
+* You have to pass the text to the helper. If you want to only pass selected text, it's up to you to build your own JS to Flash bridge to make that work. The FLA file is included in the plugin folder.
