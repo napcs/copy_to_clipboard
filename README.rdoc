@@ -24,25 +24,41 @@ The helper will be mixed in with the rest of your plugins. You can use it in you
            :text_color => "000000",
            :background_color => "FFFFFF",
            :height => 18,
-           :width => 36
+           :width => 72
   %>
   
 This generates the embed tags and the javascript method to catch the return response from the movie.
 
-<script language="javascript">
-  function copy_button_DoFSCommand(m,a){
-    document.getElementById("notice").innerHTML=a;
-  }
-</script>
-<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="36" height="18" id="copy_button" align="middle">
-	<param name="allowScriptAccess" value="sameDomain" />
-	<param name="allowFullScreen" value="false" />
-	<param name="movie" value="/swf/copy_button.swf" />
-	<param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	
-	<param name=FlashVars VALUE="send_to_clipboard=this+goes+on+the+clipboard%21&text_color=000000&background_color=FFFFFF&text_string=Copy&update_text=Copied+something+on+the+clipboard">
-	<embed flashvars="send_to_clipboard=this+goes+on+the+clipboard%21&text_color=000000&background_color=FFFFFF&text_string=Copy&update_text=Copied+something+on+the+clipboard" src="/swf/copy_button.swf" quality="high" bgcolor="#ffffff" width="36" height=18 name="copy_button" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
-</object>
-
+  <script language="javascript">
+   function copy_button_DoFSCommand(m,a){
+     document.getElementById("notice").innerHTML=a;
+   }
+  </script>
+  <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" 
+    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" 
+    width="72"
+    height="18" 
+    id="copy_button" 
+    align="middle">
+      <param name="allowScriptAccess" value="always" />
+      <param name="allowFullScreen" value="false" />
+      <param name="movie" value="/swf/copy_button.swf" />
+      <param name="quality" value="high" />
+      <param name="bgcolor" value="#ffffff" />	
+      <param name=FlashVars VALUE="button_width=72&icon_image=%2Fswf%2Fclipboard.png&send_to_clipboard=this+goes+on+the+clipboard%21&text_color=000000&background_color=FFFFFF&text_string=Copy&update_text=Copied+something+on+the+clipboard">
+      <embed flashvars="button_width=72&icon_image=%2Fswf%2Fclipboard.png&send_to_clipboard=this+goes+on+the+clipboard%21&text_color=000000&background_color=FFFFFF&text_string=Copy&update_text=Copied+something+on+the+clipboard" 
+        src="/swf/copy_button.swf" 
+        quality="high"
+        width="72"
+        height=18 
+        name="copy_button" 
+        align="middle" 
+        allowScriptAccess="always" 
+        allowFullScreen="false" 
+        type="application/x-shockwave-flash"
+        pluginspage="http://www.macromedia.com/go/getflashplayer"/>
+  </object>
+  
 If you don't want to use the helper, you now have an idea of how this all works so you can enhance it to better suit your needs.
 
 === Options
@@ -51,10 +67,16 @@ If you don't want to use the helper, you now have an idea of how this all works 
 * <tt>:text_string</tt> is the text you want to display on the button
 * <tt>:text_color</tt> is the color of the button text. Default is FFFFFF
 * <tt>:background_color</tt> is the background color of the button. Default is 000000
-* <tt>:height</tt> is the height. It'll scale the movie. Default is 36
-* <tt>:width</tt> is the width. It'll scale the movie. Default is 72
+* <tt>:height</tt> is the height. Default is 36
+* <tt>:width</tt> is the width. It'll resize the button. Default is 72 and you shouldn't really go smaller than 54
+* <tt>:icon_image</tt> is the path to an icon image. the size specified in the movie is 18x18. It'll scale whatever you throw at it.
 
 == Limitations
 
+* You have to have text on the button. I don't know if I'll disable that or not. I feel it's important to tell people what they're doing.
 * Flash 10 requires the button actively be pressed by the user. 
 * You have to pass the text to the helper. If you want to only pass selected text, it's up to you to build your own JS to Flash bridge to make that work. The FLA file is included in the plugin folder.
+
+== Acknowledgements
+
+I didn't know Clippy was available when I wrote this. While I like Clippy, I like this implementation a little more as I find it more flexible for my needs.  That said, I did borrow one of Clippy's images for the default clipboard icon.

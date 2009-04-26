@@ -1,4 +1,10 @@
-1.0.0
+1.0.1 (2008-04-25)
+ * Updated flash movie to take width parameter
+ * embedded fonts in movie to make it more readable
+ * you can expand width of the button to hold more text now
+ * support for an icon image now
+ 
+1.0.0 (2008-04-25)
  * Initial release
  * Ability to customize color, text, background, and size of button
  * can specify the id of the object

@@ -4,7 +4,7 @@ require 'cgi'
 class ClipboardTest < Test::Unit::TestCase
 
   include NAPCS::Clipboard
-
+  
   def test_render
     puts copy_to_clipboard_tag "this goes on the clipboard!",
              :update => "notice",
@@ -13,11 +13,18 @@ class ClipboardTest < Test::Unit::TestCase
              :text_color => "000000",
              :background_color => "FFFFFF",
              :height => 18,
-             :width => 36
-             
-             
+             :width => 72
   end
   
+  def test_should_have_image_icon_by_default
+    s = copy_to_clipboard_tag("foo")
+    assert s.include? "icon_image=#{CGI::escape("/swf/clipboard.png")}"
+  end
+  
+  def test_should_have_image_icon_when_passed_in
+    s = copy_to_clipboard_tag("foo",:icon_image => "foo.png")
+    assert s.include? "icon_image=#{CGI::escape("foo.png")}"
+  end
   
   def test_should_use_height_if_passed
     s = copy_to_clipboard_tag("foo",:height => "46")
@@ -27,6 +34,7 @@ class ClipboardTest < Test::Unit::TestCase
   def test_should_use_width_if_passed
     s = copy_to_clipboard_tag("foo",:width => "46")
     assert s.include?('width="46"')
+    assert s.include?('button_width=46')
   end
   
   def test_should_use_default_width
@@ -36,7 +44,7 @@ class ClipboardTest < Test::Unit::TestCase
   
   def test_should_use_default_height
     s = copy_to_clipboard_tag("foo")
-    assert s.include?('height="36"')
+    assert s.include?('height="18"')
   end
   
   def test_should_pass_text_to_vars
