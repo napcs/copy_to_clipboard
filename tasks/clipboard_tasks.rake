@@ -9,6 +9,8 @@ namespace :clipboard do
   task :uninstall => :environment do
     Dir.chdir("#{RAILS_ROOT}/public") do
       FileUtils.rm("swf/copy_button.swf")
+      FileUtils.rm("swf/clipboard.png")
+      
     end
   end
   
