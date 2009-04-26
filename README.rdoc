@@ -9,7 +9,7 @@ This Rails plugin provides a button that can copy text to the user's clipboard. 
 
 First, install the plugin
 
-  script/plugin install git@github.com/napcs/copy_to_clipboard.git
+  script/plugin install git://github.com/napcs/copy_to_clipboard.git
 
 Once installed, copy the SWF file to your <tt>public/swf</tt>.  You can do this easily with
 
