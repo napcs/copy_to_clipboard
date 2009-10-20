@@ -1,10 +1,14 @@
-1.0.1 (2008-04-25)
+1.0.2 (2009-09-10)
+ * fixed clipboard:install task (Lucas de Castro <castro.lucas@gmail.com>)
+ * fixed namespacing issue in linux and case-sensitive FS (thanks to Lucas de Castro and Maksim Horbul for each solution)
+ 
+1.0.1 (2009-04-25)
  * Updated flash movie to take width parameter
  * embedded fonts in movie to make it more readable
  * you can expand width of the button to hold more text now
  * support for an icon image now
  
-1.0.0 (2008-04-25)
+1.0.0 (2009-04-25)
  * Initial release
  * Ability to customize color, text, background, and size of button
  * can specify the id of the object
